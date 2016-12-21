@@ -135,3 +135,13 @@ test.cb('Commands that fail will still output error messages to stderr', t => {
   });
 });
 
+test('execPath value makes sense', t => {
+  // TODO(nate): change this test if we add electron support in the unit tests
+  t.is(common.execPath, process.execPath);
+  t.is(typeof common.execPath, 'string');
+});
+
+test('Changing common.execPath does not modify process', t => {
+  common.execPath = 'foo';
+  t.not(common.execPath, process.execPath);
+});

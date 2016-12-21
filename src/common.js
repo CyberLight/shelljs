@@ -409,3 +409,9 @@ function _register(name, implementation, wrapOptions) {
   }
 }
 exports.register = _register;
+
+// Expose the path to the NodeJS binary to utilities
+var isElectron = Boolean(process.versions.electron);
+if (!isElectron) {
+  exports.execPath = process.execPath;
+}
