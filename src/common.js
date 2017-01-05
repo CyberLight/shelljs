@@ -10,14 +10,24 @@ var shell = require('..');
 var shellMethods = Object.create(shell);
 
 // Module globals
-var config = {
-  silent: false,
+var DEFAULT_CONFIG = {
   fatal: false,
-  verbose: false,
-  noglob: false,
   globOptions: {},
-  maxdepth: 255
+  maxdepth: 255,
+  noglob: false,
+  silent: false,
+  verbose: false,
 };
+var config = {
+  reset: function () {
+    Object.assign(this, DEFAULT_CONFIG);
+  },
+  resetForTesting: function () {
+    Object.assign(this, DEFAULT_CONFIG);
+    this.silent = true;
+  },
+};
+config.reset();
 exports.config = config;
 
 var state = {
